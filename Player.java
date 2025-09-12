@@ -31,9 +31,9 @@ public class Player
         return 1;
     }
 
-    public void getCard(Deck deck)
+    public void getStartingHand(Deck deck)
     {
-        //do stuff
+        hand 
     }
 
 

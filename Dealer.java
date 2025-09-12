@@ -5,8 +5,5 @@ public class Dealer extends Player
         super("Robert");
     }
 
-    public void deal()
-    {
-
-    }
+    
 }
