@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player
 {
+
     private String name;
     private double money;
     private ArrayList<Card> hand = new ArrayList<>();
+    Scanner myScanner = new Scanner(System.in);
 
     public Player(String name)
     {
@@ -14,7 +17,7 @@ public class Player
 
     public void playTurn()
     {
-        //do stuff
+        
     }
 
     public void hit()
@@ -24,7 +27,7 @@ public class Player
 
     public int getHandValue()
     {
-        //do stuff
+        
         return 1;
     }
 
@@ -32,4 +35,8 @@ public class Player
     {
         //do stuff
     }
+
+
+
+
 }
