@@ -27,13 +27,28 @@ public class Player
 
     public int getHandValue()
     {
-        
+        for(int i = 0; i > hand.size(); i++)
+        {
+            if(hand.face(i) == )
+            {
+
+            }
+        }
+
+
         return 1;
     }
 
     public void getStartingHand(Deck deck)
     {
-        hand 
+
+        for(int i = 0; i < 2; i++)
+        {
+        hand.add(deck.getTopCard());
+        deck.discard(0);
+        }
+
+
     }
 
 

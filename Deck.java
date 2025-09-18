@@ -40,6 +40,11 @@ public class Deck
         return topCard;
     }
 
+    public void discard(int index)
+    {
+        cards.remove(0);
+    }
+
     public ArrayList<Card> getCards()
     {
         return this.cards;
