@@ -19,19 +19,23 @@ public class Player
     {
         char hitStay;
         Scanner scanner = new Scanner(System.in);
-        System.out.print("would you like to hit(h) or stay(s): ");
+        System.out.print("would you" + name + "like to hit(h) or stay(s): ");
         hitStay = scanner.next().charAt(0);
+        getStartingHand(deck);
+        System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
         boolean validInput = false;
         while(validInput = false)
         if(hitStay == 'h')
         {
             hit(deck);
             System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
+            System.out.println("Your hand is " + hand.toString());
             validInput = false;
         }
         else if (hitStay == 's') 
         {
             System.out.println("You stayed.");
+            System.out.println("Your hand is " + hand.toString());
             validInput = true;    
         }
         else 
@@ -51,34 +55,29 @@ public class Player
 
     public int getHandValue()
     {
-        int handValue = 0;
-        for(int i = 0; i > hand.size(); i++)
+        int handVal = 0;
+        int aces = 0;
+        for(Card card : this.hand)
         {
-            if(hand.get(i).getFace() == "A")
+            handVal += card.getValue();
+            if(card.getFace().equals("A"))
             {
-                if((handValue + 11) < 21)
-                {
-                    handValue += 11;
-                }
-                else
-                {
-                    handValue+=1; 
-                }
+                aces++;
             }
-            else 
+
+            while(handVal > 21 && aces > 0)
             {
-                handValue += hand.get(i).getValue();
+                handVal -= 10;
+                aces--;
             }
         }
-
-        if(handValue > 21) 
-        {
-            handValue = -1;
-        }  
-    
-
-
-        return handValue;
+            if(handVal > 21)
+            {
+                handVal = -1;
+                System.out.println("You Busted!");
+            }
+        
+            return handVal;
     }
 
     public void getStartingHand(Deck deck)
@@ -121,7 +120,7 @@ public class Player
         return bet;  
     }
 
-    public void returnBet()
+    public void returnBet(boolean win)
     {
         double bet = placeBet();
         if(win)
@@ -132,7 +131,7 @@ public class Player
 
     public boolean outcome()
     {
-        
+        return true;
     }
 
 
