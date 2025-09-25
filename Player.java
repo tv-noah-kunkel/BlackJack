@@ -16,21 +16,26 @@ public class Player
     }
 
     public void playTurn(Deck deck)
-    {
+    {   
+        placeBet();
+        getStartingHand(deck);
+        System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
         char hitStay;
         Scanner scanner = new Scanner(System.in);
         System.out.print("would you" + name + "like to hit(h) or stay(s): ");
         hitStay = scanner.next().charAt(0);
-        getStartingHand(deck);
-        System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
+        
         boolean validInput = false;
         while(validInput = false)
+        {
         if(hitStay == 'h')
         {
             hit(deck);
             System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
-            System.out.println("Your hand is " + hand.toString());
-            validInput = false;
+            System.out.println("Your hand is " + hand.toString() + "with a value of " + getHandValue());
+            System.out.print("would you" + name + "like to hit(h) or stay(s): ");
+            hitStay = scanner.next().charAt(0);
+            
         }
         else if (hitStay == 's') 
         {
@@ -42,10 +47,48 @@ public class Player
         {
             System.out.println("Not a valid input.");
         }
-
-
-
     }
+}
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void hit(Deck deck)
     {
@@ -98,7 +141,8 @@ public class Player
         boolean validBet = false;
         double bet = 0;
         while(validBet == false)
-        {
+        {   
+            System.out.println("You have " + money + " dollars.");
             System.out.print("How much would you like to bet: ");
             bet = betScan.nextDouble();
             betScan.nextLine();
@@ -132,6 +176,12 @@ public class Player
     public boolean outcome()
     {
         return true;
+    }
+
+
+    public String getName()
+    {
+        return name;
     }
 
 

@@ -17,8 +17,7 @@ public class Run {
         players.add(thomas);
         players.add(graham);
         
-
-        for(Card card : deck.getCards())
+             for(Card card : deck.getCards())
         {
             System.out.println(card);
         }
@@ -26,12 +25,9 @@ public class Run {
       while(keepPlaying)
       {
 
-        for(int i = 0; i < players.size(); i++)
-        {
-            players.get(i).placeBet();
-        }
         for(int i =0; i < players.size(); i++)
         {
+            System.out.println(players.get(i).getName() + "'s turn.");
             players.get(i).playTurn(deck);
             handVals.add(players.get(i).getHandValue());
         } 
