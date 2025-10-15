@@ -22,19 +22,22 @@ public class Player
         System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
         char hitStay;
         Scanner scanner = new Scanner(System.in);
-        System.out.print("would you" + name + "like to hit(h) or stay(s): ");
-        hitStay = scanner.next().charAt(0);
+        System.out.println("would you" + name + "like to hit(h) or stay(s): ");
+        String hs = scanner.nextLine();
+        hitStay = hs.charAt(0);
+       
         
         boolean validInput = false;
-        while(validInput = false)
+        while(validInput == false)
         {
         if(hitStay == 'h')
         {
             hit(deck);
             System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
+            if(getHandValue() = -1)
             System.out.println("Your hand is " + hand.toString() + "with a value of " + getHandValue());
             System.out.print("would you" + name + "like to hit(h) or stay(s): ");
-            hitStay = scanner.next().charAt(0);
+            hitStay = scanner.nextLine().charAt(0);
             
         }
         else if (hitStay == 's') 
@@ -47,49 +50,9 @@ public class Player
         {
             System.out.println("Not a valid input.");
         }
+        scanner.close();
     }
 }
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void hit(Deck deck)
     {
         hand.add(deck.getTopCard());
@@ -146,6 +109,7 @@ public class Player
             System.out.print("How much would you like to bet: ");
             bet = betScan.nextDouble();
             betScan.nextLine();
+            // betScan.close();
             if(bet > money)
             {
                 System.out.println("Please enter a bet less than or equal to the amount of money you have.");
@@ -183,7 +147,4 @@ public class Player
     {
         return name;
     }
-
-
-
 }
