@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Run {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Deck deck = new Deck();
         ArrayList<Player> players = new ArrayList<>();
         ArrayList<Integer> handVals = new ArrayList<>();
@@ -17,10 +19,7 @@ public class Run {
         players.add(thomas);
         players.add(graham);
         
-             for(Card card : deck.getCards())
-        {
-            System.out.println(card);
-        }
+
         boolean keepPlaying = true;
       while(keepPlaying)
       {
@@ -28,9 +27,23 @@ public class Run {
         for(int i =0; i < players.size(); i++)
         {
             System.out.println(players.get(i).getName() + "'s turn.");
-            players.get(i).playTurn(deck);
+            players.get(i).playTurn(deck, scanner);
             handVals.add(players.get(i).getHandValue());
         } 
+
+        robert.dealerPlayTurn(deck);
+
+        for (int i = 0; i < players.size();i++)
+        {
+          if (handVals.get(i) > robert.getHandValue())
+          {
+            players.get(i).returnBet(true);
+          }
+          else
+          {
+            players.get(i).returnBet(false);
+          }
+        }
                                 
         
       }  

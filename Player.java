@@ -7,7 +7,7 @@ public class Player
     private String name;
     private double money;
     private ArrayList<Card> hand = new ArrayList<>();
-    Scanner myScanner = new Scanner(System.in);
+    private double bet;
 
     public Player(String name)
     {
@@ -15,14 +15,14 @@ public class Player
         this.money = 100;
     }
 
-    public void playTurn(Deck deck)
+    public void playTurn(Deck deck, Scanner scanner)
     {   
-        placeBet();
+        placeBet(scanner);
         getStartingHand(deck);
         System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
         char hitStay;
-        Scanner scanner = new Scanner(System.in);
         System.out.println("would you" + name + "like to hit(h) or stay(s): ");
+        scanner.nextLine();
         String hs = scanner.nextLine();
         hitStay = hs.charAt(0);
        
@@ -34,10 +34,17 @@ public class Player
         {
             hit(deck);
             System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
-            if(getHandValue() = -1)
+            if(getHandValue() == -1)
+            {
+                System.out.println("You Busted");
+                validInput = true;
+            }
+            else
+            {
             System.out.println("Your hand is " + hand.toString() + "with a value of " + getHandValue());
             System.out.print("would you" + name + "like to hit(h) or stay(s): ");
             hitStay = scanner.nextLine().charAt(0);
+            }
             
         }
         else if (hitStay == 's') 
@@ -50,7 +57,6 @@ public class Player
         {
             System.out.println("Not a valid input.");
         }
-        scanner.close();
     }
 }
     public void hit(Deck deck)
@@ -98,9 +104,8 @@ public class Player
 
     }
 
-    public double placeBet()  
+    public void placeBet(Scanner betScan)  
     {
-        Scanner betScan = new Scanner(System.in);
         boolean validBet = false;
         double bet = 0;
         while(validBet == false)
@@ -108,7 +113,7 @@ public class Player
             System.out.println("You have " + money + " dollars.");
             System.out.print("How much would you like to bet: ");
             bet = betScan.nextDouble();
-            betScan.nextLine();
+            
             // betScan.close();
             if(bet > money)
             {
@@ -125,26 +130,36 @@ public class Player
                 money -= bet;                
             }
         }
-        return bet;  
+        
+        this.bet = bet;  
+        
     }
 
     public void returnBet(boolean win)
     {
-        double bet = placeBet();
         if(win)
         {
-            money += bet*2;
+            money += this.bet*2;
+            System.out.println("You won!");
+            System.out.println("You now have " + money);
+
+        }
+        else
+        {
+            System.out.println("you Lost :(");
         }
     }
 
-    public boolean outcome()
-    {
-        return true;
-    }
+    
 
 
     public String getName()
     {
         return name;
+    }
+
+    public ArrayList<Card> getHand()
+    {
+        return this.hand;
     }
 }
