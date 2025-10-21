@@ -31,7 +31,7 @@ public class Dealer extends Player
         int handVal = this.getHandValue();
         if ( handVal == 21)
         {
-            System.out.println("\nThe dealer has 21, better luck next time.")
+            System.out.println("\nThe dealer has 21, better luck next time.");
         }
         else if (handVal >= 17)
         {

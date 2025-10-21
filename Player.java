@@ -21,7 +21,7 @@ public class Player
         getStartingHand(deck);
         System.out.println("Your hand is " + hand.get(0).toString()+ " and " + hand.get(1).toString());
         char hitStay;
-        System.out.println("would you" + name + "like to hit(h) or stay(s): ");
+        System.out.println("would you like to hit(h) or stay(s): ");
         scanner.nextLine();
         String hs = scanner.nextLine();
         hitStay = hs.charAt(0);
@@ -33,7 +33,7 @@ public class Player
         if(hitStay == 'h')
         {
             hit(deck);
-            System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
+            
             if(getHandValue() == -1)
             {
                 System.out.println("You Busted");
@@ -41,8 +41,8 @@ public class Player
             }
             else
             {
-            System.out.println("Your hand is " + hand.toString() + "with a value of " + getHandValue());
-            System.out.print("would you" + name + "like to hit(h) or stay(s): ");
+            System.out.println("You drew a(n) " +  hand.get(hand.size()-1).toString() + ". your hand value is now " + getHandValue() + ".");
+            System.out.print("would you like to hit(h) or stay(s): ");
             hitStay = scanner.nextLine().charAt(0);
             }
             
@@ -86,7 +86,7 @@ public class Player
             if(handVal > 21)
             {
                 handVal = -1;
-                System.out.println("You Busted!");
+               
             }
         
             return handVal;
@@ -140,7 +140,7 @@ public class Player
         if(win)
         {
             money += this.bet*2;
-            System.out.println("You won!");
+            System.out.println(name + "won!");
             System.out.println("You now have " + money);
 
         }
